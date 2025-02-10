@@ -126,15 +126,23 @@ public class DatabaseInitializer {
         """))
 
                 .then(insertIfEmpty(client, "sections", """
-            INSERT INTO sections (name) VALUES
+            INSERT INTO public.sections (name) VALUES
+            ('Normal'),
             ('VIP'),
+            ('Normal'),
+            ('VIP'),
+            ('DIAMOND'),
+            ('General'),
+            ('Preferencial'),
             ('General');
         """))
 
                 .then(insertIfEmpty(client, "show_event", """
-            INSERT INTO show_event (title, description) VALUES
-            ('Rock Concert', 'An amazing rock show!'),
-            ('Classical Orchestra', 'A wonderful classical performance.');
+            INSERT INTO public.show_event (title,description) VALUES
+            ('Hamlet','Obra de William Shakespeare'),
+            ('Frankenstein','Obra de teatro'),
+            ('Cascanueces','Ballet navideño'),
+            ('Concierto tributo Queens','Concierto rock');
         """))
 
                 .then(insertIfEmpty(client, "performance", """
@@ -154,9 +162,12 @@ public class DatabaseInitializer {
         """))
 
                 .then(insertIfEmpty(client, "spectator", """
-            INSERT INTO spectator (dni, name) VALUES
-            ('12345678', 'Alice'),
-            ('87654321', 'Bob');
+            INSERT INTO public.spectator (dni,name) VALUES
+            ('87654321','Bob'),
+            ('12345678','Alex'),
+            ('1122334455','Alice'),
+            ('2233445566','Rick'),
+            ('778899001','Martin');
         """))
 
                 .then(insertIfEmpty(client, "reservation", """
@@ -171,30 +182,145 @@ public class DatabaseInitializer {
         """))
 
                 .then(insertIfEmpty(client, "seat", """
-            INSERT INTO seat (auditorium_id, number) VALUES
-            (1, 1),
-            (1, 2),
-            (3, 10);
+            INSERT INTO public.seat (auditorium_id,"number") VALUES
+            (1,1),
+            (1,2),
+            (1,3),
+            (1,4),
+            (1,5),
+            (1,6),
+            (2,1),
+            (2,2),
+            (2,3),
+            (2,4),
+            (2,5),
+            (2,6),
+            (3,NULL),
+            (3,NULL),
+            (3,NULL),
+            (3,NULL),
+            (3,NULL),
+            (3,NULL),
+            (4,1),
+            (4,2),
+            (4,3),
+            (4,4),
+            (5,1),
+            (5,2),
+            (5,3),
+            (5,4),
+            (5,5),
+            (5,6),
+            (12,1),
+            (12,2),
+            (12,3),
+            (12,4),
+            (12,5),
+            (12,6),
+            (13,NULL),
+            (13,NULL),
+            (13,NULL),
+            (13,NULL),
+            (13,NULL),
+            (13,NULL),
+            (14,1),
+            (14,2),
+            (14,3),
+            (15,NULL),
+            (15,NULL),
+            (15,NULL);
         """))
 
                 .then(insertIfEmpty(client, "seat_price", """
-            INSERT INTO seat_price (show_id, section_id, price) VALUES
-            (1, 1, 150.0),
-            (1, 2, 80.0),
-            (2, 1, 120.0);
+            INSERT INTO public.seat_price (show_id,section_id,price) VALUES
+            (1,1,1000.0),
+            (1,2,2500.0),
+            (2,4,10000.0),
+            (2,5,50000.0),
+            (2,3,4000.0),
+            (3,8,10000.0),
+            (3,9,30000.0),
+            (4,10,60000.0);
         """))
 
                 .then(insertIfEmpty(client, "show_section_seat", """
-            INSERT INTO show_section_seat (show_id, section_id, seat_id, seat_price_id) VALUES
-            (1, 1, 1, 1),
-            (1, 2, 2, 2),
-            (2, 1, 3, 3);
+             INSERT INTO public.show_section_seat (show_id,section_id,seat_id,seat_price_id) VALUES
+             (1,1,1,1),
+             (1,1,2,1),
+             (1,1,3,1),
+             (1,2,4,2),
+             (1,2,5,2),
+             (1,2,6,2),
+             (1,1,7,1),
+             (1,1,8,1),
+             (1,1,9,1),
+             (1,2,10,2),
+             (1,2,11,2),
+             (1,2,12,2),
+             (1,1,13,1),
+             (1,1,14,1),
+             (1,1,15,1),
+             (1,2,16,2),
+             (1,2,17,2),
+             (1,2,18,2),
+             (1,1,19,1),
+             (1,1,20,1),
+             (1,2,21,2),
+             (1,2,22,2),
+             (1,1,23,1),
+             (1,1,24,1),
+             (1,1,25,1),
+             (1,1,26,1),
+             (1,2,27,2),
+             (1,2,28,2),
+             (3,8,50,6),
+             (2,3,1,3),
+             (2,3,2,3),
+             (2,4,3,4),
+             (2,4,4,4),
+             (2,5,5,5),
+             (2,5,6,5),
+             (2,3,13,3),
+             (2,3,14,3),
+             (2,4,15,4),
+             (2,4,16,4),
+             (2,5,17,5),
+             (2,5,18,5),
+             (3,8,51,6),
+             (3,8,52,6),
+             (3,9,54,7),
+             (3,9,55,7),
+             (3,9,53,7),
+             (3,8,56,6),
+             (3,8,57,6),
+             (3,8,58,6),
+             (3,9,59,7),
+             (3,9,60,7),
+             (3,9,61,7),
+             (3,8,50,6),
+             (3,8,51,6),
+             (3,8,52,6),
+             (3,9,53,7),
+             (3,9,54,7),
+             (3,9,55,7),
+             (4,10,62,8),
+             (4,10,63,8),
+             (4,10,64,8),
+             (4,10,65,8),
+             (4,10,66,8),
+             (4,10,67,8);
         """))
 
                 .then(insertIfEmpty(client, "ticket", """
-            INSERT INTO ticket (reservation_id, performance_id, show_section_seat_id) VALUES
-            (1, 1, 1),
-            (2, 2, 3);
+            INSERT INTO public.ticket (reservation_id,performance_id,show_section_seat_id) VALUES
+            (1,1,1),
+            (1,1,5),
+            (3,2,7),
+            (3,2,8),
+            (6,2,9),
+            (7,2,12),
+            (8,1,5),
+            (8,1,6);
         """))
 
                 .subscribe();
