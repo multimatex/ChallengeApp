@@ -105,222 +105,222 @@ public class DatabaseInitializer {
         """).then()
 
                 .then(insertIfEmpty(client, "location", """
-            INSERT INTO public."location" (name,address,country,city) VALUES
-            ('Madison Square Garden','4 Pennsylvania Plaza','USA','New York'),
-            ('teatro brooklyn','Bennelong Point','Usa','NY'),
-            ('Auditorios UdeA','transversal 2','Colombia','Medellin'),
-            ('Teatro moderno','Calle 5 ','Colombia','Bogota');
+            INSERT INTO public."location" (id,name,address,country,city) VALUES
+            (2,'Madison Square Garden','4 Pennsylvania Plaza','USA','New York'),
+            (1,'teatro brooklyn','Bennelong Point','Usa','NY'),
+            (5,'Auditorios UdeA','transversal 2','Colombia','Medellin'),
+            (4,'Teatro moderno','Calle 5 ','Colombia','Bogota');
         """))
 
                 .then(insertIfEmpty(client, "auditorium", """
-            INSERT INTO public.auditorium (location_id,name,is_numbered_seats) VALUES
-            (1,'Sala 1',true),
-            (1,'Sala 2',true),
-            (1,'Sala 4',true),
-            (1,'Sala 5',true),
-            (4,'Sala 1',true),
-            (5,'Sala 1',true),
-            (5,'Sala 2',false),
-            (1,'Sala 3',false),
-            (4,'Sala 2',false);
+            INSERT INTO public.auditorium (id,location_id,name,is_numbered_seats) VALUES
+            (1,1,'Sala 1',true),
+            (2,1,'Sala 2',true),
+            (4,1,'Sala 4',true),
+            (5,1,'Sala 5',true),
+            (12,4,'Sala 1',true),
+            (14,5,'Sala 1',true),
+            (15,5,'Sala 2',false),
+            (3,1,'Sala 3',false),
+            (13,4,'Sala 2',false);
         """))
 
                 .then(insertIfEmpty(client, "sections", """
-            INSERT INTO public.sections (name) VALUES
-            ('Normal'),
-            ('VIP'),
-            ('Normal'),
-            ('VIP'),
-            ('DIAMOND'),
-            ('General'),
-            ('Preferencial'),
-            ('General');
+            INSERT INTO public.sections (id,name) VALUES
+            (1,'Normal'),
+            (2,'VIP'),
+            (3,'Normal'),
+            (4,'VIP'),
+            (5,'DIAMOND'),
+            (8,'General'),
+            (9,'Preferencial'),
+            (10,'General');
         """))
 
                 .then(insertIfEmpty(client, "show_event", """
-            INSERT INTO public.show_event (title,description) VALUES
-            ('Hamlet','Obra de William Shakespeare'),
-            ('Frankenstein','Obra de teatro'),
-            ('Cascanueces','Ballet navideño'),
-            ('Concierto tributo Queens','Concierto rock');
+            INSERT INTO public.show_event (id,title,description) VALUES
+            (1,'Hamlet','Obra de William Shakespeare'),
+            (2,'Frankenstein','Obra de teatro'),
+            (3,'Cascanueces','Ballet navideño'),
+            (4,'Concierto tributo Queens','Concierto rock');
         """))
 
                 .then(insertIfEmpty(client, "performance", """
-            INSERT INTO public.performance (show_id,auditorium_id,date_time) VALUES
-            (1,1,'2025-02-02 10:30:00'),
-            (1,2,'2025-02-14 15:00:00'),
-            (1,3,'2025-03-24 15:25:00'),
-            (1,4,'2025-06-13 17:45:00'),
-            (1,5,'2025-06-13 17:45:00'),
-            (2,1,'2026-01-18 16:30:00'),
-            (2,3,'2026-01-18 16:30:00'),
-            (3,12,'2025-02-02 10:30:00'),
-            (3,13,'2025-02-02 07:30:00'),
-            (3,12,'2025-02-03 07:30:00'),
-            (4,14,'2025-05-12 10:30:00'),
-            (4,15,'2025-02-02 09:30:00');
+            INSERT INTO public.performance (id,show_id,auditorium_id,date_time) VALUES
+            (1,1,1,'2025-02-02 10:30:00'),
+            (2,1,2,'2025-02-14 15:00:00'),
+            (3,1,3,'2025-03-24 15:25:00'),
+            (4,1,4,'2025-06-13 17:45:00'),
+            (5,1,5,'2025-06-13 17:45:00'),
+            (6,2,1,'2026-01-18 16:30:00'),
+            (7,2,3,'2026-01-18 16:30:00'),
+            (8,3,12,'2025-02-02 10:30:00'),
+            (9,3,13,'2025-02-02 07:30:00'),
+            (10,3,12,'2025-02-03 07:30:00'),
+            (11,4,14,'2025-05-12 10:30:00'),
+            (12,4,15,'2025-02-02 09:30:00');
         """))
 
                 .then(insertIfEmpty(client, "spectator", """
-            INSERT INTO public.spectator (dni,name) VALUES
-            ('87654321','Bob'),
-            ('12345678','Alex'),
-            ('1122334455','Alice'),
-            ('2233445566','Rick'),
-            ('778899001','Martin');
+            INSERT INTO public.spectator (id,dni,name) VALUES
+            (2,'87654321','Bob'),
+            (1,'12345678','Alex'),
+            (3,'1122334455','Alice'),
+            (4,'2233445566','Rick'),
+            (5,'778899001','Martin');
         """))
 
                 .then(insertIfEmpty(client, "reservation", """
-            INSERT INTO public.reservation (spectator_id,reservation_date,total_price,status) VALUES
-            (1,'2025-04-01 10:00:00',100.0,'Confirmed'),
-            (2,'2025-04-02 11:00:00',200.0,'Pending'),
-            (2,'2025-04-01 10:00:00',8000.0,NULL),
-            (2,'2025-02-07 14:17:23',2000.0,NULL),
-            (5,'2025-02-08 12:19:00',1000.0,NULL),
-            (4,'2025-02-01 11:12:43',2500.0,NULL),
-            (1,'2025-02-09 20:51:36.597719',5000.0,NULL);
+            INSERT INTO public.reservation (id,spectator_id,reservation_date,total_price,status) VALUES
+            (1,1,'2025-04-01 10:00:00',100.0,'Confirmed'),
+            (2,2,'2025-04-02 11:00:00',200.0,'Pending'),
+            (4,2,'2025-04-01 10:00:00',8000.0,NULL),
+            (3,2,'2025-02-07 14:17:23',2000.0,NULL),
+            (6,5,'2025-02-08 12:19:00',1000.0,NULL),
+            (7,4,'2025-02-01 11:12:43',2500.0,NULL),
+            (8,1,'2025-02-09 20:51:36.597719',5000.0,NULL);
         """))
 
                 .then(insertIfEmpty(client, "seat", """
-            INSERT INTO public.seat (auditorium_id,"number") VALUES
-            (1,1),
-            (1,2),
-            (1,3),
-            (1,4),
-            (1,5),
-            (1,6),
-            (2,1),
-            (2,2),
-            (2,3),
-            (2,4),
-            (2,5),
-            (2,6),
-            (3,NULL),
-            (3,NULL),
-            (3,NULL),
-            (3,NULL),
-            (3,NULL),
-            (3,NULL),
-            (4,1),
-            (4,2),
-            (4,3),
-            (4,4),
-            (5,1),
-            (5,2),
-            (5,3),
-            (5,4),
-            (5,5),
-            (5,6),
-            (12,1),
-            (12,2),
-            (12,3),
-            (12,4),
-            (12,5),
-            (12,6),
-            (13,NULL),
-            (13,NULL),
-            (13,NULL),
-            (13,NULL),
-            (13,NULL),
-            (13,NULL),
-            (14,1),
-            (14,2),
-            (14,3),
-            (15,NULL),
-            (15,NULL),
-            (15,NULL);
+            INSERT INTO public.seat (id,auditorium_id,"number") VALUES
+            (1,1,1),
+            (2,1,2),
+            (3,1,3),
+            (4,1,4),
+            (5,1,5),
+            (6,1,6),
+            (7,2,1),
+            (8,2,2),
+            (9,2,3),
+            (10,2,4),
+            (11,2,5),
+            (12,2,6),
+            (13,3,NULL),
+            (14,3,NULL),
+            (15,3,NULL),
+            (16,3,NULL),
+            (17,3,NULL),
+            (18,3,NULL),
+            (19,4,1),
+            (20,4,2),
+            (21,4,3),
+            (22,4,4),
+            (23,5,1),
+            (24,5,2),
+            (25,5,3),
+            (26,5,4),
+            (27,5,5),
+            (28,5,6),
+            (50,12,1),
+            (51,12,2),
+            (52,12,3),
+            (53,12,4),
+            (54,12,5),
+            (55,12,6),
+            (56,13,NULL),
+            (57,13,NULL),
+            (58,13,NULL),
+            (59,13,NULL),
+            (60,13,NULL),
+            (61,13,NULL),
+            (62,14,1),
+            (63,14,2),
+            (64,14,3),
+            (65,15,NULL),
+            (66,15,NULL),
+            (67,15,NULL);
         """))
 
                 .then(insertIfEmpty(client, "seat_price", """
-            INSERT INTO public.seat_price (show_id,section_id,price) VALUES
-            (1,1,1000.0),
-            (1,2,2500.0),
-            (2,4,10000.0),
-            (2,5,50000.0),
-            (2,3,4000.0),
-            (3,8,10000.0),
-            (3,9,30000.0),
-            (4,10,60000.0);
+            INSERT INTO public.seat_price (id,show_id,section_id,price) VALUES
+            (1,1,1,1000.0),
+            (2,1,2,2500.0),
+            (4,2,4,10000.0),
+            (5,2,5,50000.0),
+            (3,2,3,4000.0),
+            (6,3,8,10000.0),
+            (7,3,9,30000.0),
+            (8,4,10,60000.0);
         """))
 
                 .then(insertIfEmpty(client, "show_section_seat", """
-             INSERT INTO public.show_section_seat (show_id,section_id,seat_id,seat_price_id) VALUES
-             (1,1,1,1),
-             (1,1,2,1),
-             (1,1,3,1),
-             (1,2,4,2),
-             (1,2,5,2),
-             (1,2,6,2),
-             (1,1,7,1),
-             (1,1,8,1),
-             (1,1,9,1),
-             (1,2,10,2),
-             (1,2,11,2),
-             (1,2,12,2),
-             (1,1,13,1),
-             (1,1,14,1),
-             (1,1,15,1),
-             (1,2,16,2),
-             (1,2,17,2),
-             (1,2,18,2),
-             (1,1,19,1),
-             (1,1,20,1),
-             (1,2,21,2),
-             (1,2,22,2),
-             (1,1,23,1),
-             (1,1,24,1),
-             (1,1,25,1),
-             (1,1,26,1),
-             (1,2,27,2),
-             (1,2,28,2),
-             (3,8,50,6),
-             (2,3,1,3),
-             (2,3,2,3),
-             (2,4,3,4),
-             (2,4,4,4),
-             (2,5,5,5),
-             (2,5,6,5),
-             (2,3,13,3),
-             (2,3,14,3),
-             (2,4,15,4),
-             (2,4,16,4),
-             (2,5,17,5),
-             (2,5,18,5),
-             (3,8,51,6),
-             (3,8,52,6),
-             (3,9,54,7),
-             (3,9,55,7),
-             (3,9,53,7),
-             (3,8,56,6),
-             (3,8,57,6),
-             (3,8,58,6),
-             (3,9,59,7),
-             (3,9,60,7),
-             (3,9,61,7),
-             (3,8,50,6),
-             (3,8,51,6),
-             (3,8,52,6),
-             (3,9,53,7),
-             (3,9,54,7),
-             (3,9,55,7),
-             (4,10,62,8),
-             (4,10,63,8),
-             (4,10,64,8),
-             (4,10,65,8),
-             (4,10,66,8),
-             (4,10,67,8);
+             INSERT INTO public.show_section_seat (id,show_id,section_id,seat_id,seat_price_id) VALUES
+             (1,1,1,1,1),
+             (2,1,1,2,1),
+             (3,1,1,3,1),
+             (4,1,2,4,2),
+             (5,1,2,5,2),
+             (6,1,2,6,2),
+             (7,1,1,7,1),
+             (8,1,1,8,1),
+             (9,1,1,9,1),
+             (10,1,2,10,2),
+             (11,1,2,11,2),
+             (12,1,2,12,2),
+             (13,1,1,13,1),
+             (14,1,1,14,1),
+             (15,1,1,15,1),
+             (16,1,2,16,2),
+             (17,1,2,17,2),
+             (18,1,2,18,2),
+             (19,1,1,19,1),
+             (20,1,1,20,1),
+             (21,1,2,21,2),
+             (22,1,2,22,2),
+             (23,1,1,23,1),
+             (24,1,1,24,1),
+             (25,1,1,25,1),
+             (26,1,1,26,1),
+             (27,1,2,27,2),
+             (28,1,2,28,2),
+             (29,3,8,50,6),
+             (30,2,3,1,3),
+             (31,2,3,2,3),
+             (32,2,4,3,4),
+             (33,2,4,4,4),
+             (34,2,5,5,5),
+             (35,2,5,6,5),
+             (36,2,3,13,3),
+             (37,2,3,14,3),
+             (38,2,4,15,4),
+             (39,2,4,16,4),
+             (40,2,5,17,5),
+             (41,2,5,18,5),
+             (42,3,8,51,6),
+             (43,3,8,52,6),
+             (45,3,9,54,7),
+             (46,3,9,55,7),
+             (44,3,9,53,7),
+             (47,3,8,56,6),
+             (48,3,8,57,6),
+             (49,3,8,58,6),
+             (50,3,9,59,7),
+             (51,3,9,60,7),
+             (52,3,9,61,7),
+             (53,3,8,50,6),
+             (54,3,8,51,6),
+             (55,3,8,52,6),
+             (56,3,9,53,7),
+             (57,3,9,54,7),
+             (58,3,9,55,7),
+             (59,4,10,62,8),
+             (60,4,10,63,8),
+             (61,4,10,64,8),
+             (62,4,10,65,8),
+             (63,4,10,66,8),
+             (64,4,10,67,8);
         """))
 
                 .then(insertIfEmpty(client, "ticket", """
-            INSERT INTO public.ticket (reservation_id,performance_id,show_section_seat_id) VALUES
-            (1,1,1),
-            (1,1,5),
-            (3,2,7),
-            (3,2,8),
-            (6,2,9),
-            (7,2,12),
-            (8,1,5),
-            (8,1,6);
+            INSERT INTO public.ticket (id,reservation_id,performance_id,show_section_seat_id) VALUES
+            (1,1,1,1),
+            (2,1,1,5),
+            (3,3,2,7),
+            (4,3,2,8),
+            (5,6,2,9),
+            (6,7,2,12),
+            (7,8,1,5),
+            (8,8,1,6);
         """))
 
                 .subscribe();
