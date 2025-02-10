@@ -1,5 +1,6 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/RapidTicket
-    username: RapidUser
-    password: 
+    url: r2dbc:${Postgres.DATABASE_URL}
