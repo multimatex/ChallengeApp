@@ -1,5 +1,6 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   r2dbc:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: r2dbc:${Postgres.DATABASE_URL}
