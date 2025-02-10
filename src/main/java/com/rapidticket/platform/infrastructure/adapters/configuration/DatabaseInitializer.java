@@ -313,14 +313,14 @@ public class DatabaseInitializer {
             (8,8,1,6);
         """))
                 .then(insertIfEmpty(client, "reservation", """
-            INSERT INTO public.reservation (id,spectator_id,reservation_date,total_price,status) VALUES
-            (1,1,'2025-04-01 10:00:00',100.0,'Confirmed'),
-            (2,2,'2025-04-02 11:00:00',200.0,'Pending'),
-            (4,2,'2025-04-01 10:00:00',8000.0,'Pending'),
-            (3,2,'2025-02-07 14:17:23',2000.0,'Pending'),
-            (6,5,'2025-02-08 12:19:00',1000.0,'Pending'),
-            (7,4,'2025-02-01 11:12:43',2500.0,'Pending'),
-            (8,1,'2025-02-09 20:51:36',5000.0,'Pending');
+            INSERT INTO public.reservation (id,spectator_id,reservation_date,total_price) VALUES
+            (1,1,'2025-04-01 10:00:00',100.0),
+            (2,2,'2025-04-02 11:00:00',200.0),
+            (4,2,'2025-04-01 10:00:00',8000.0),
+            (3,2,'2025-02-07 14:17:23',2000.0),
+            (6,5,'2025-02-08 12:19:00',1000.0),
+            (7,4,'2025-02-01 11:12:43',2500.0),
+            (8,1,'2025-02-09 20:51:36',5000.0);
         """))
 
                 .subscribe();
