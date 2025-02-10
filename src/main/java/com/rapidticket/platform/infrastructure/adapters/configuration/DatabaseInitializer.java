@@ -170,16 +170,6 @@ public class DatabaseInitializer {
             (5,'778899001','Martin');
         """))
 
-                .then(insertIfEmpty(client, "reservation", """
-            INSERT INTO public.reservation (id,spectator_id,reservation_date,total_price,status) VALUES
-            (1,1,'2025-04-01 10:00:00',100.0,'Confirmed'),
-            (2,2,'2025-04-02 11:00:00',200.0,'Pending'),
-            (4,2,'2025-04-01 10:00:00',8000.0,NULL),
-            (3,2,'2025-02-07 14:17:23',2000.0,NULL),
-            (6,5,'2025-02-08 12:19:00',1000.0,NULL),
-            (7,4,'2025-02-01 11:12:43',2500.0,NULL),
-            (8,1,'2025-02-09 20:51:36.597719',5000.0,NULL);
-        """))
 
                 .then(insertIfEmpty(client, "seat", """
             INSERT INTO public.seat (id,auditorium_id,"number") VALUES
@@ -321,6 +311,16 @@ public class DatabaseInitializer {
             (6,7,2,12),
             (7,8,1,5),
             (8,8,1,6);
+        """))
+                .then(insertIfEmpty(client, "reservation", """
+            INSERT INTO public.reservation (id,spectator_id,reservation_date,total_price,status) VALUES
+            (1,1,'2025-04-01 10:00:00',100.0,'Confirmed'),
+            (2,2,'2025-04-02 11:00:00',200.0,'Pending'),
+            (4,2,'2025-04-01 10:00:00',8000.0,'Pending'),
+            (3,2,'2025-02-07 14:17:23',2000.0,'Pending'),
+            (6,5,'2025-02-08 12:19:00',1000.0,'Pending'),
+            (7,4,'2025-02-01 11:12:43',2500.0,'Pending'),
+            (8,1,'2025-02-09 20:51:36',5000.0,'Pending');
         """))
 
                 .subscribe();
